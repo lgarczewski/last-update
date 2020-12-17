@@ -25,10 +25,13 @@ function lu_substitute_tag( string $content ) {
   //@TODO: convert this into an option or parameter
   $format = 'F j Y';
 
-  $last_mod_date = get_the_modified_date( $format );
+  $last_mod_date_txt = get_the_modified_date( $format );
+  $last_mod_date_attr = get_the_modified_date( 'c' );
+
+  $tag = "<time datetime='{$last_mod_date_attr}'>{$last_mod_date_txt}</time>";
 
   //@TODO: convert this to a shortcode
-  $content = str_replace( '[last_modified]', $last_mod_date, $content );
+  $content = str_replace( '[last_modified]', $tag, $content );
 
   return $content;
 }
