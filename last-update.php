@@ -22,10 +22,12 @@
 
 add_filter( 'the_content', 'lu_substitute_tag', 1 );
 function lu_substitute_tag( string $content ) {
-  $format = 'F j, Y';
+  //@TODO: convert this into an option or parameter
+  $format = 'F j Y';
 
   $last_mod_date = get_the_modified_date( $format );
 
+  //@TODO: convert this to a shortcode
   $content = str_replace( '[last_modified]', $last_mod_date, $content );
 
   return $content;
